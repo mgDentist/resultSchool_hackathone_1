@@ -4,6 +4,7 @@ import { ContextMenu } from './menu'
 import { TestModule } from './modules/test.module'
 import { RandomSoundModule } from './modules/random-sound.module'
 import { RandomQuoteModule } from './modules/random-quote.module'
+import { CreativeModule } from './modules/creative.module'
 
 const contextMenu = new ContextMenu('#menu')
 const backgroundModule = new BackgroundModule('add_text_block', 'Изменить задний фон сайта')
@@ -14,12 +15,14 @@ const addTestModule = new TestModule(
 )
 const randomSoundModule = new RandomSoundModule('sound', 'Случайный звук')
 const randomQuoteModule = new RandomQuoteModule('quote', 'Случайная цитата')
+const creativeModule = new CreativeModule('cat', 'Поймай кота')
 
 contextMenu.add(addTestModule)
 contextMenu.add(randomSoundModule)
 contextMenu.add(randomQuoteModule)
 contextMenu.add(backgroundModule)
 contextMenu.add(timerModule)
+contextMenu.add(creativeModule)
 
 document.body.addEventListener('contextmenu', (event) => {
   contextMenu.showContextMenu(event)
