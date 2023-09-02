@@ -5,6 +5,8 @@ import { TestModule } from './modules/test.module'
 import { RandomSoundModule } from './modules/random-sound.module'
 import { RandomQuoteModule } from './modules/random-quote.module'
 import { CreativeModule } from './modules/creative.module'
+import { BackgroundModule } from './modules/background.module'
+import { TimerModule } from './modules/timer.module'
 
 const contextMenu = new ContextMenu('#menu')
 const backgroundModule = new BackgroundModule('add_text_block', 'Изменить задний фон сайта')
