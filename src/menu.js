@@ -30,7 +30,10 @@ export class ContextMenu extends Menu {
     } else {
       menuItem.textContent = module.text
     }
-    menuItem.addEventListener('click', () => module.trigger())
+    menuItem.addEventListener('click', () => {
+      module.trigger()
+      this.close()
+    })
     this.menu.append(menuItem)
   }
 
