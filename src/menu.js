@@ -25,11 +25,12 @@ export class ContextMenu extends Menu {
     const menuItem = document.createElement('li')
     menuItem.classList.add('menu-item')
     menuItem.dataset.type = module.type
-    menuItem.textContent = module.text
-    menuItem.addEventListener('click', () => {
-      module.trigger()
-      this.close()
-    })
+    if (module.render) {
+      menuItem.append(module.render())
+    } else {
+      menuItem.textContent = module.text
+    }
+    menuItem.addEventListener('click', () => module.trigger())
     this.menu.append(menuItem)
   }
 
