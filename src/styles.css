@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap");
 
 * {
     margin: 0;
@@ -8,7 +8,7 @@
 
 body {
     font-size: 14px;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     height: 100vh;
     width: 100%;
     padding: 2rem;
@@ -34,7 +34,7 @@ body {
     font-size: 1rem;
     color: #eee;
     cursor: pointer;
-    transition: background-color .2s ease-in;
+    transition: background-color 0.2s ease-in;
     border-radius: inherit;
 }
 
@@ -42,8 +42,7 @@ body {
     background: #343434;
 }
 
-
-.timer{
+.timer {
     display: flex;
     justify-content: center;
     font-size: 80px;
@@ -54,7 +53,7 @@ body {
     border-radius: 20px;
 }
 
-button{
+button {
     width: 100px;
     height: 30px;
     border-radius: 10px;
@@ -63,10 +62,10 @@ button{
     background: rgba(16, 30, 55, 0.353);
     color: white;
     font-size: 20px;
-    transition: .3s;
+    transition: 0.3s;
 }
 
-button:hover{
+button:hover {
     transform: scale(1.01);
     background: rgb(38, 69, 123);
 }
