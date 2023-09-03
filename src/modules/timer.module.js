@@ -1,34 +1,68 @@
-import { Module } from '../core/module';
+import { Module } from '../core/module'
+import sound from '/assets/audio/song.mp3'
 
 export class TimerModule extends Module {
   constructor(type, text) {
-    super(type, text);
+    super(type, text)
   }
-  toHTML(){
-    const menuItem = document.createElement('li');
+
+  render() {
     const divButtons = document.createElement('div')
-    
+
     let button60m = document.createElement('button')
-    button60m.innerHTML = '60m'
+    button60m.innerHTML = '60s'
 
     let button30m = document.createElement('button')
-    button30m.innerHTML = '30m'
+    button30m.innerHTML = '30s'
 
     let button15m = document.createElement('button')
-    button15m.innerHTML = '15m'
+    button15m.innerHTML = '15s'
 
-
-    menuItem.className = 'menu-item';
-    menuItem.dataset.type = this.type;
-    menuItem.textContent = this.text;
-   
     divButtons.append(button60m)
     divButtons.append(button30m)
     divButtons.append(button15m)
 
+    button60m.addEventListener('click', () => this.trigger(60))
+    button30m.addEventListener('click', () => this.trigger(30))
+    button15m.addEventListener('click', () => this.trigger(15))
 
-    menuItem.append(divButtons)
-    menuItem.addEventListener('click', () => this.trigger());
-    return menuItem;
+    return divButtons
+  }
+
+  soundOfTimerEnd() {
+    const audio = new Audio(sound)
+    audio.play()
+  }
+
+  timerIncrement(seconds, body) {
+    let count = seconds
+    const timer = document.createElement('div')
+    timer.className = 'timer'
+    body.append(timer)
+    const buttons = document.querySelectorAll('button')
+    const interval = setInterval(() => {
+      count--
+      timer.innerText = count + 's'
+      if (count < 10) {
+        timer.style.color = 'Gold'
+      }
+      if (count <= 0) {
+        clearInterval(interval)
+        timer.innerText = 'End'
+        timer.style.color = 'OrangeRed'
+        this.soundOfTimerEnd()
+        buttons.forEach((button) => (button.disabled = false))
+        setTimeout(() => {
+          timer.remove()
+        }, 2000)
+      }
+    }, 1000)
+  }
+
+  trigger(timeInSeconds) {
+    const buttons = document.querySelectorAll('button')
+    buttons.forEach((button) => (button.disabled = true))
+    const body = document.querySelector('body')
+    this.timerIncrement(timeInSeconds, body)
   }
 }
