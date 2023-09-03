@@ -1,13 +1,14 @@
 import { Module } from '../core/module'
-
+import sound from '/assets/audio/song.mp3';
 
 export class TimerModule extends Module {
   constructor(type, text) {
     super(type, text)
   }
+
   render() {
     const divButtons = document.createElement('div')
-  
+
     let button60m = document.createElement('button')
     button60m.innerHTML = '60s'
 
@@ -21,9 +22,9 @@ export class TimerModule extends Module {
     divButtons.append(button30m)
     divButtons.append(button15m)
 
-    button60m.addEventListener('click', () => this.trigger('60s'))
-    button30m.addEventListener('click', () => this.trigger('30s'))
-    button15m.addEventListener('click', () => this.trigger('15s'))
+    button60m.addEventListener('click', () => this.trigger(60))
+    button30m.addEventListener('click', () => this.trigger(30))
+    button15m.addEventListener('click', () => this.trigger(15))
 
     return divButtons
   }
@@ -33,35 +34,32 @@ export class TimerModule extends Module {
     audio.play()
   }
 
-  timerIncrement(seconds, timer){
+  timerIncrement(seconds, body){
     let count = seconds
-      setInterval(() => {
-        count--
-        timer.innerText = count + 's'
-        if(count < 10){
-          timer.style.color = 'Gold'
-        }
-        if(count < 0){
-          timer.innerText = 'End'
-          timer.style.color = 'OrangeRed'
-          setTimeout(() => {
-            timer.remove()
-          }, 2000)
-        }
-      },1000)
-  }
-
-  trigger(seconds){
-    const body = document.querySelector('body')
     const timer = document.createElement('div')
     timer.className = 'timer'
     body.append(timer)
-    if(seconds === '60s'){
-      this.timerIncrement(60, timer)
-    }else if(seconds === '30s'){
-      this.timerIncrement(30, timer)
-    }else if(seconds === '15s'){
-      this.timerIncrement(15, timer)
-    }
+    const interval = setInterval(() => {
+      count--
+      timer.innerText = count + 's'
+      if(count < 10){
+        timer.style.color = 'Gold'
+      }
+      if(count <= 0){
+        clearInterval(interval)
+        timer.innerText = 'End'
+        timer.style.color = 'OrangeRed'
+        this.soundOfTimerEnd()
+        setTimeout(() => {
+          timer.remove()
+        }, 2000)
+      }
+    },1000)
   }
+
+  trigger(timeInSeconds){
+    const body = document.querySelector('body')
+    this.timerIncrement(timeInSeconds, body)
+  }
+
 }
