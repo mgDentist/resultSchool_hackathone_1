@@ -35,7 +35,7 @@ export class CreativeModule extends Module {
             document.body.append(poop);
 
             winText.style.textAlign = 'center';
-            winText.textContent = 'ты меня испугал, убирай...';
+            winText.textContent = 'ты меня испугал, ня...';
             winText.style.fontFamily = 'Roboto';
             winText.style.fontSize = '25px';
             winText.style.color = 'brown';
