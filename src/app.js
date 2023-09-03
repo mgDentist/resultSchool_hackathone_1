@@ -9,8 +9,8 @@ import { BackgroundModule } from './modules/background.module'
 import { TimerModule } from './modules/timer.module'
 
 const contextMenu = new ContextMenu('#menu')
-const backgroundModule = new BackgroundModule('add_text_block', 'Изменить задний фон сайта')
-const timerModule = new TimerModule('add_text_block', 'Таймер')
+const backgroundModule = new BackgroundModule('changeBackground', 'Изменить задний фон сайта')
+const timerModule = new TimerModule('timer', 'Таймер')
 const addTestModule = new TestModule(
   'add_text_block',
   'Добавить тестовый блок с текстом'
