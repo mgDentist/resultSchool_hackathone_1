@@ -1,5 +1,5 @@
 import { Module } from '../core/module'
-import sound from '/assets/audio/song.mp3';
+import sound from '/assets/audio/song.mp3'
 
 export class TimerModule extends Module {
   constructor(type, text) {
@@ -29,37 +29,40 @@ export class TimerModule extends Module {
     return divButtons
   }
 
-  soundOfTimerEnd(){
-    const audio = new Audio(sound);
+  soundOfTimerEnd() {
+    const audio = new Audio(sound)
     audio.play()
   }
 
-  timerIncrement(seconds, body){
+  timerIncrement(seconds, body) {
     let count = seconds
     const timer = document.createElement('div')
     timer.className = 'timer'
     body.append(timer)
+    const buttons = document.querySelectorAll('button')
     const interval = setInterval(() => {
       count--
       timer.innerText = count + 's'
-      if(count < 10){
+      if (count < 10) {
         timer.style.color = 'Gold'
       }
-      if(count <= 0){
+      if (count <= 0) {
         clearInterval(interval)
         timer.innerText = 'End'
         timer.style.color = 'OrangeRed'
         this.soundOfTimerEnd()
+        buttons.forEach((button) => (button.disabled = false))
         setTimeout(() => {
           timer.remove()
         }, 2000)
       }
-    },1000)
+    }, 1000)
   }
 
-  trigger(timeInSeconds){
+  trigger(timeInSeconds) {
+    const buttons = document.querySelectorAll('button')
+    buttons.forEach((button) => (button.disabled = true))
     const body = document.querySelector('body')
     this.timerIncrement(timeInSeconds, body)
   }
-
 }

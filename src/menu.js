@@ -30,7 +30,19 @@ export class ContextMenu extends Menu {
     } else {
       menuItem.textContent = module.text
     }
-    menuItem.addEventListener('click', () => module.trigger())
+    menuItem.addEventListener('click', (event) => {
+      const target = event.target
+      if (
+        !(
+          target.innerHTML === '60s' ||
+          target.innerHTML === '30s' ||
+          target.innerHTML === '15s'
+        )
+      ) {
+        module.trigger()
+      }
+      this.close()
+    })
     this.menu.append(menuItem)
   }
 
