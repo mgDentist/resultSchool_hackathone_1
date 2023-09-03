@@ -48,28 +48,27 @@ export class ContextMenu extends Menu {
 
   showContextMenu(event) {
     event.preventDefault();
-    const userScreenX = event.view.innerWidth
-    const userScreenY = event.view.innerHeight
-    const pointOfClickX = event.clientX
-    const pointOfClickY = event.clientY
-    const menuWidth = this.menu.offsetWidth
-    const menuHeight = this.menu.offsetHeight
+    const userScreenX = event.view.innerWidth;
+    const userScreenY = event.view.innerHeight;
+    const pointOfClickX = event.clientX;
+    const pointOfClickY = event.clientY;
+    const menuWidth = this.menu.offsetWidth;
+    const menuHeight = this.menu.offsetHeight;
 
-    console.log('menu height', menuHeight)
-    console.log('menu width', menuWidth)
+    console.log('menu height', menuHeight);
+    console.log('menu width', menuWidth);
 
     if (pointOfClickX + menuWidth > userScreenX) {
-      this.menu.style.left = `${pointOfClickX - menuWidth}px`
+      this.menu.style.left = `${pointOfClickX - menuWidth}px`;
     } else {
-      this.menu.style.left = `${pointOfClickX}px`
+      this.menu.style.left = `${pointOfClickX}px`;
     }
 
     if (pointOfClickY + menuHeight > userScreenY) {
-      this.menu.style.top = `${pointOfClickY - menuHeight}px`
+      this.menu.style.top = `${pointOfClickY - menuHeight}px`;
     } else {
-      this.menu.style.top = `${pointOfClickY}px`
+      this.menu.style.top = `${pointOfClickY}px`;
     }
     this.open();
-    
   }
 }
