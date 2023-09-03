@@ -34,9 +34,31 @@ export class ContextMenu extends Menu {
   }
 
   showContextMenu(event) {
+    console.log(event)
     event.preventDefault()
+
+    const userScreenX = event.view.innerWidth
+    const userScreenY = event.view.innerHeight
+    const pointOfClickX = event.clientX
+    const pointOfClickY = event.clientY
+    const menuWidth = this.menu.offsetWidth
+    const menuHeight = this.menu.offsetHeight
+
+    console.log('menu height', menuHeight)
+    console.log('menu width', menuWidth)
+
+    if (pointOfClickX + menuWidth > userScreenX) {
+      this.menu.style.left = `${pointOfClickX - menuWidth}px`
+    } else {
+      this.menu.style.left = `${pointOfClickX}px`
+    }
+
+    if (pointOfClickY + menuHeight > userScreenY) {
+      this.menu.style.top = `${pointOfClickY - menuHeight}px`
+    } else {
+      this.menu.style.top = `${pointOfClickY}px`
+    }
+
     this.open()
-    this.menu.style.left = `${event.clientX}px`
-    this.menu.style.top = `${event.clientY}px`
   }
 }
