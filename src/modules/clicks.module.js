@@ -33,6 +33,7 @@ export class ClicksModule extends Module {
         const body = document.querySelector(`body`);
         const table = document.createElement(`div`);
         table.id = `counterModal`;
+        table.style.margin = '0 auto';
         table.style.width = `184px`; 
         table.style.height = `130px`;
         table.style.backgroundColor = `rgb(51,51,54)`;
