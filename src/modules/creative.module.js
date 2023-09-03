@@ -47,15 +47,4 @@ export class CreativeModule extends Module {
             }, 3000);
         })
     }
-
-    toHTML() {
-        const menuItem = document.createElement('li');
-        menuItem.className = 'menu-item';
-        menuItem.dataset.type = this.type;
-        menuItem.textContent = this.text;
-
-        menuItem.addEventListener('click', () => this.trigger());
-
-        return menuItem;
-    }
 }
