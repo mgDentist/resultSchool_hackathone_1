@@ -26,7 +26,10 @@ export class ContextMenu extends Menu {
     menuItem.classList.add('menu-item')
     menuItem.dataset.type = module.type
     menuItem.textContent = module.text
-    menuItem.addEventListener('click', () => module.trigger())
+    menuItem.addEventListener('click', () => {
+      module.trigger()
+      this.close()
+    })
     this.menu.append(menuItem)
   }
 
