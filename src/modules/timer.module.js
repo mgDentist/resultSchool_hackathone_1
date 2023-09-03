@@ -1,5 +1,6 @@
 import { Module } from '../core/module'
 
+
 export class TimerModule extends Module {
   constructor(type, text) {
     super(type, text)
@@ -28,9 +29,8 @@ export class TimerModule extends Module {
   }
 
   soundOfTimerEnd(){
-    let audio = new Audio()
-    audio.src = '@/src/assets/audio/song.mp3'
-    audio.autoplay = true
+    const audio = new Audio(sound);
+    audio.play()
   }
 
   timerIncrement(seconds, timer){
@@ -40,7 +40,6 @@ export class TimerModule extends Module {
         timer.innerText = count + 's'
         if(count < 10){
           timer.style.color = 'Gold'
-          
         }
         if(count < 0){
           timer.innerText = 'End'
